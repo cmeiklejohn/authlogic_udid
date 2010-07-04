@@ -54,7 +54,7 @@ module AuthlogicUDID
       # TODO: Assumes that the object creating is in proper syntax: <class><udid></udid></class>
       # Ex. <user_session><udid></udid></user_session> if UserSession is the session class.
       def authenticating_with_udid?
-        (controller.params && !controller.params[self.class.name.underscore.to_sym][:udid].blank?)
+        (controller.params && controller.params[self.class.name.underscore.to_sym] && !controller.params[self.class.name.underscore.to_sym][:udid].blank?)
       end
 
       def validate_by_udid
