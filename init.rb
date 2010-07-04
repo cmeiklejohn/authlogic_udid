@@ -1,1 +1,1 @@
-require 'authlogic_uuid'
+require 'authlogic_udid'
