@@ -10,6 +10,12 @@ module AuthlogicUDID
     end
 
     module Config
+      # * <tt>Default:</tt> :find_by_udid
+      # * <tt>Accepts:</tt> Symbol
+      def find_by_udid_method(value = nil)
+        rw_config(:find_by_udid_method, value, :find_by_udid)
+      end
+      alias_method :find_by_udid_method=, :find_by_udid_method
     end
 
     module Methods
@@ -52,7 +58,19 @@ module AuthlogicUDID
       end
 
       def validate_by_udid
-        raise "#{self.udid}"
+        # Attempt to find the user who has this udid, if not then we create one.
+        self.attempted_record = search_for_record(find_by_udid_method, udid)
+
+        unless self.attempted_record 
+          new_user = klass.new
+          new_user.send(:"udid=", udid)
+          self.attempted_record = new_user
+          self.attempted_record.save_with_validation(false)
+        end
+      end
+
+      def find_by_udid_method
+        self.class.find_by_udid_method
       end
     end
   end
