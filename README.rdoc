@@ -19,7 +19,7 @@ via UDID.
 
 === 1. Install the authlogic_udid plugin
 
-  $ script/plugin install git://github.com/kalasjocke/authlogic_facebook_connect.git
+  $ script/plugin install git://github.com/cmeiklejohn/authlogic_udid.git
 
 === 2. Make some database changes
  
