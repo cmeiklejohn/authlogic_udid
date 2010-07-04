@@ -2,18 +2,18 @@
 
 == Purpose
 
-I run a very pricy data driven website, with two mobile apps, one which requires registration and one
-which doesn't.  They both use authlogic single use tokens to access various parts of my sites API.  For 
-the free app that doesn't require authentication, I wanted to provide a way to register users behind the 
-scenes and provide an easy upgrade path.
+I run a very expensive data driven website which has two mobile apps and a web app.
 
-For the users who don't fully register, I have them submit a UDID when creating the user_session to pull
-the single use token back, which registers an account for them if they don't have one, or uses an existing
-account.
+The first mobile app and associated web app require registration, while the other doesn't.  I wanted 
+a way that the users of the free mobile app would have accounts created behind the scenes that I could
+later associate an email with when they registered in the app that they could use to login on the 
+website.
 
-This provides an easy way for me to be able to associate an email and password with their existing account
-based on UDID to upgrade them to full membership -- it also allows me a way to ban or track users usage 
-via UDID.
+Both apps use a API, accessible via XML with a authlogic single use token.  This module allows 
+user sessions to be created with just an iPhone/iPod UDID, which create associated users that 
+I can later associate an email and password with, allowing them to login on the main website and
+registration-required mobile app.  It also allows me to track usage by UDID and ban users, if I 
+needed to based on their usage.
 
 == Install and use
 
