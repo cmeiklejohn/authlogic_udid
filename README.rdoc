@@ -26,6 +26,14 @@ needed to based on their usage.
   $ script/generate migration add_udid_to_user udid:string
   $ rake db:migrate
 
+=== 3. Change your acts_as_authentic call to turn of stock validations
+
+  acts_as_authentic do |config|
+    config.validate_email_field = false
+  end
+
+These will be replaced by validate_email_or_udid_field, which defaults to true and allows nil for email.
+
 == Example
 
 If your session module is called UserSession, normally via XML the request would be similar to:

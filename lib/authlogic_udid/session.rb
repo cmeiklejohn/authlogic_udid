@@ -65,7 +65,8 @@ module AuthlogicUDID
           new_user = klass.new
           new_user.send(:"udid=", udid)
           self.attempted_record = new_user
-          self.attempted_record.save_with_validation(false)
+          self.attempted_record.password = self.attempted_record.password_confirmation = Authlogic::Random.friendly_token
+          self.attempted_record.save
         end
       end
 
